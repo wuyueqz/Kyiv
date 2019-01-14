@@ -1,0 +1,216 @@
+<!doctype html>
+<html lang="en">
+  <head>
+
+    <link rel="shortcut icon" href="./img/HiCraft.ico" type="image/x-icon">
+    <link rel="icon" href="./img/Podil.ico" type="image/x-icon">
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
+    <link rel="stylesheet" href="./css/animate.css">
+    <link rel="stylesheet" href="./css/yue_index.css">
+    <link rel="stylesheet" href="./css/hover-min.css">
+    <link rel="stylesheet" href="./css/pie-chart.css">
+    <title>Design for Podil – A social media data study approach</title>
+
+    <!-- Optional JavaScript -->
+    <script src="../scripts/pie-chart 01.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.2/raphael-min.js"></script>
+
+  </head>
+  
+  <body>
+    
+        <div class="container-fluid">
+          <header class="header clearfix">
+            <div class="logo animated fadeIn">
+              <div class="logo-img">
+                  <img src="./img/Podil Logo.png">
+              </div>
+              <div class="logo-txt">
+                  <h1 class="text-white">Design for Podil</h3>
+                  <h4 class="text-white">A social media data study approach</h3>
+              </div>
+            </div>
+          </header>
+        </div>
+  
+        <main role="main">
+  
+          <div class="container-fluid hero-container">
+            <div class="hero-bg animated-2 fadeIn"></div>
+            <div class="row">
+              <div class="col-lg-6 col-sm-12">
+                <img src="./img/profile.jpg" class="profile-img animated-25s fadeIn">
+              </div>
+              <div class="col-lg-6 col-sm-12">
+                <h1 class="text-white hero-txt-header">Design for Podil</h1>
+                <h2 class="text-white hero-txt-subHeader"></h2>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-lg-6 col-sm-12">
+                <p class="text-white hero-txt-body">Until now, the first and the only Census conducted in Ukraine was in 2001. Due to the absence of government agencies, Ukraine is lack of actual data, which can tell the country’s socio-demographic characteristics. The need of the data allows this study to seek alternative compensation for this data gap.</p>
+                <p class="text-white hero-txt-body">In this way, the information decoded from different informal social media platforms can tell how people actually use their urban space (user, location, time and duration, activity type, frequency, etc.), which provide a lens to mine the value (either to preserve the postindustrial heritage as social activity containers, or to reprogram it according to user’s actual need) of the Podil post-industrial area. What can social media (e.g. Facebook) tell us about unrevealed information of Podil, in terms of the community's demographic features and social network, i.e. who are living in Podil, who are the actual users of the urban space of Podil, and who are we design for ?
+                </p>
+              </div>
+              <div class="col-lg-6 col-sm-12">
+                
+              </div>
+            </div>
+          </div>
+
+          <div class="container-fluid container-custom1">
+            <div class="row" align="center">
+            <div class="col">
+              <h1><br>193,000</br></h1>
+              <h2>People are living in Podil<br>
+              But we know very little about them<br></h2>
+            </div>
+
+            <canvas id='canvas' >
+              <script>   
+              window.requestAnimFrame = (function(){
+                    return  window.requestAnimationFrame       || 
+                            window.webkitRequestAnimationFrame || 
+                            window.mozRequestAnimationFrame    || 
+                            window.oRequestAnimationFrame      || 
+                            window.msRequestAnimationFrame     || 
+                            function( callback ){
+                              window.setTimeout(callback, 1000 / 60);
+                            };
+                  })();
+
+                  var canvas = document.getElementById('canvas'),
+                                  w = window.innerWidth,
+                                  h = window.innerHeight;
+                                  canvas.width = w;
+                                  canvas.height = h/2;
+                                    //c = canvas.getContext('2d'),
+                                    particles = [];
+                                    tick = 0;
+                      var x = 0;
+                      function loop() {
+
+                          createParticles();
+                          updateParticles();
+                          killParticles();
+                          drawParticles();
+                        requestAnimFrame(loop);
+
+                      }
+                      requestAnimFrame(loop);
+
+                      function createParticles() {
+              var randVal1 = Math.floor(Math.random()*255),
+                  randVal2 = Math.floor(Math.random()*255),
+                  randVal3 = Math.floor(Math.random()*255);
+                        
+                          //every 10th tick
+                          if( tick % 10 == 0 ) {
+                          //add particle if < 100
+                              if ( particles.length < 100 ) {
+                                  particles.push({
+                                  x: Math.random()*canvas.width, //0 and width
+                                  y: 0,
+                                  speed: 2+Math.random()*3,//2-5
+                                  radius: 2+Math.random()*1,//5-10
+                                  color: 'rgb(' + randVal1 + ',' + randVal2 + ',' + randVal3 + ')'/*'white'*/,
+                                  });
+                              }
+                          }
+                      }
+                      
+                      function updateParticles() {
+                          for ( var i in particles ) {
+                              var part = particles[i];
+                              part.y += part.speed;
+                          }
+                      }
+
+                      function killParticles() {
+                          for ( var i in particles ) {
+                              
+                              var part = particles[i];
+                              
+                              if ( part.y > canvas.height ) {
+                                  //console.log('x');
+                                  part.y = 0;
+                              }
+                          }
+                     }
+
+                     function drawParticles() {
+
+                          var c = canvas.getContext('2d');
+                          c.fillStyle = "#121314";
+                          c.fillRect (0, 0, canvas.width, canvas.height);
+                          for ( var i in particles ) {
+                              var part = particles[i];
+                              c.beginPath();
+                              c.arc(part.x, part.y, part.radius, 0, Math.PI*2);
+                              c.closePath();
+                              c.fillStyle = part.color;
+                              c.fill();
+                          }
+                   }  
+              </script>
+            </canvas>
+
+            </div>
+          </div>
+
+          <div class="container-fluid container-custom1">
+            <div class="row container-overlap-title">
+              <div class="col">
+                  <h1><br>Who are they?</br></h1>
+                  <h2>In the study sample, women contribute around 53% of the population within the neighborhood<br>
+                  While this number is 47% for men<br></h2>
+                  <br>
+                  <p><i>Figure: Male versus female</i><br></p>
+              </div>
+                  
+              <div class="col">
+                <script src="https://d3js.org/d3.v3.min.js"></script>
+                  <div id="pie-chart">
+                  <script src="../scripts/pie-chart 01.js">
+                  </script>
+                  </div>
+              </div>
+            </div>
+          </div>   
+           
+          <div class="container-fluid container-custom1">
+              <div class="row container-overlap-title">
+                
+                <div class="col">
+                    <h1><br>Where are they coming from?</br></h1>                
+                    <h2>Large portion of the people who have the hometown information come from Kyiv (69%)<br>
+                    other people come from various places, including Russia and Poland<br></h2>
+                    <br>
+                    <p><i>Figure: Hometown by Facebook</i><br></p>
+                </div>
+
+                <div class="col col-bubble">
+                  <div id="map">
+                    <script src="../scripts/ukraine-map.js">
+                    </script>                
+                  </div> 
+                </div>
+
+              </div>       
+
+          </div>
+
+        </main>
+
+    <footer class="footer">
+          <p>&copy; Yue Wu 2018</p>
+    </footer>
+
+  </body>
+</html>
